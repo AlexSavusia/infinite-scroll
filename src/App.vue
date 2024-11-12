@@ -8,6 +8,7 @@
 
 <script>
 import UserCard from './components/UserCard.vue';
+import randomuserService from '@/include/api/services/randomuser.service.js';
 
 /**
  * @typedef {Object} User
@@ -63,8 +64,7 @@ export default {
       if (this.loading) return;
       this.loading = true;
       try {
-        const response = await fetch(`https://randomuser.me/api/?page=${this.page}&results=10`);
-        const data = await response.json();
+        const data = await randomuserService.getUsers({ page: this.page, results: 10 });
         /** @type {User[]} */
         this.users = [...this.users, ...data.results];
         this.page += 1;
