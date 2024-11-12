@@ -1,15 +1,13 @@
-// webpack.config.js
+import path from 'path';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { VueLoaderPlugin } from 'vue-loader';
 
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
 
-module.exports = {
+export default {
     entry: './src/main.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true, // Чистит папку dist перед сборкой
+        path: path.resolve(process.cwd(), 'dist'),
     },
     module: {
         rules: [
@@ -36,10 +34,10 @@ module.exports = {
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, 'dist'), // Указываем папку для статических файлов
+            directory: path.join(process.cwd(), 'dist'),
         },
         compress: true,
         port: 9000,
-        hot: true, // Включаем HMR (горячую перезагрузку) для удобства разработки
+        hot: true,
     },
 };
