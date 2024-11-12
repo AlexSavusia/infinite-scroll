@@ -48,11 +48,11 @@ export default {
       loading: false,
     };
   },
-  created() {
-    this.fetchUsers();
+  mounted() {
+    this.fetchUsers(); // Загружаем пользователей после монтирования
     window.addEventListener('scroll', this.handleScroll);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener('scroll', this.handleScroll);
   },
   methods: {
